@@ -17,6 +17,9 @@ void is_not_a_number(void);
 void invalid_fractol_name(void);
 void destroy_window_with_esc(void);
 void destroy_window_with_close_button(void);
+void init_error(void);
+void error_under_creating_window_with_mlx(void);
+void unknown_flag(void);
 
 // pdeb torrent flags
 
@@ -24,6 +27,9 @@ void destroy_window_with_close_button(void);
 #define INVALID_FRRACTAL 131 // 13 == death , 1 flag
 #define DESTROY_WWESCKEY 132 // 13 == death , 2 flag
 #define DESTROY_WWCB 133 // 13 == death , 3 flag
+#define MLX_INIT_ERROR 134 // 13 == death , 4 flag
+#define ERROR_UCWWM 135 // 13 = death , 5 flag
+#define UNKNOWN_FLAG 136 // 13 death , 6 flag
 
 // file descriptors (FILTER ERRORS) 
 
