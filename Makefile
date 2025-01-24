@@ -1,11 +1,14 @@
 NAME = fractol
 MLX_DIR = ./mlx
 MLX = $(MLX_DIR)/libmlx.a
-SRC = main.c
+SRC = $(wildcard *.c) $(wildcard debugger/*.c)
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 LFLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+
+
+vpath %.c . debugger
 
 all : $(NAME)
 
