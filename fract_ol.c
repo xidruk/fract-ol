@@ -1,4 +1,4 @@
-// #include "g_header.h"
+#include "g_header.h"
 
 // int validate_param(char *s1, char *s2)
 // {
@@ -50,3 +50,47 @@
 //         invalid_fractol_name();
 //     return 0;
 // }
+
+
+int handle_close(t_fractal_wc *data)
+{
+    mlx_destroy_window(data->mlx, data->win);
+    exit(0); // Clean exit
+    return (0);
+}
+
+
+int main(int argc, char **argv)
+{
+    t_fractal_wc data;
+
+    // Validate parameters and set fractal type
+    if (!fractals_base(&data, argc, argv))
+    {
+        printf("Usage: ./fractol <Mandelbrot | Julia> [Julia real] [Julia imag]\n");
+        return (1);
+    }
+
+    // Initialize MiniLibX and create window
+    data.mlx = mlx_init();
+    data.win = mlx_new_window(data.mlx, W_HEIGHT, W_HEIGHT, "Fract'ol");
+    data.img = mlx_new_image(data.mlx, W_HEIGHT, W_HEIGHT);
+    data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
+                                  &data.line_length, &data.endian);
+
+    // Initial zoom and offsets
+    data.zoom = 1.0;
+    data.x_offset = 0.0;
+    data.y_offset = 0.0;
+
+    // Render the initial fractal
+    fractals_render(&data);
+
+    // Event handling
+    mlx_key_hook(data.win, handle_keys, &data);
+    mlx_mouse_hook(data.win, handle_mouse, &data);
+    mlx_hook(data.win, 17, 0, handle_close, &data);
+    mlx_loop(data.mlx);
+
+    return (0);
+}
