@@ -8,10 +8,12 @@
 
 // types flags
 
-#define SWAP_TO_CINT  // swap a char to int
-#define SWAP_TO_CFLOAT // swap a char to float
+#define SWAP_TO_INT  969// swap a char to int
+#define SWAP_TO_FLOAT  696// swap a char to float
 
 // types swaper functions 
-int types_swaper(char *data, int flag);
+void types_swaper(char *data, int flag);
+int c_to_int(char *data);
+float c_to_float(char *data);
 
 #endif
